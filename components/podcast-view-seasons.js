@@ -4,7 +4,7 @@ import { store, connect } from '../store.js'
 class Component extends LitElement {
     static get properties() {
         return {
-            single: { state: true },
+            seasons: { state: true },
         }
     }
 
@@ -12,41 +12,38 @@ class Component extends LitElement {
         super()
 
         this.disconnectStore = connect((state) => {
-            if (this.single === state.single) return
-            this.single = state.single
+            if (this.seasons === state.seasons) return
+            this.seasons = state.seasons
         })
     }
 
     disconnectedCallback() { this.disconnectStore() }
 
     static styles = css`
-        h1 {
-            color: purple;
-        }
-        img {
-            width: 100px;
-            height: 100px;
-        }
-        button {
-            border-radius: 4px;
-        }
+       
     `;
 
     render() {
         /**
          * @type {import('../types').show}
          */
-        const show = this.single
+        const show = this.seasons
         if (!show) {
-            return html`<div></div>`
+            return html `<div></div>`
         }
 
-        const backHandler = () => store.loadList()
+        const backHandler = () => store.loadList() 
+       
+        const season = show.seasons.map(({ id ,title , episodes , image }) => { 
+            
+            const clickHandler = () => store.loadSingle(id)
 
-        const seasons = show.seasons.map(({ episodes, title }) => {
             return html`
                 <div>
                     <strong>${title}</strong>
+                    <img src="${image}" width="300" height="300" @click="${clickHandler}">
+                </div>
+                <div>
                     ${episodes.map(({ id , file, title: innerTitle }) => {
                         return html`
                             <div>
@@ -66,10 +63,10 @@ class Component extends LitElement {
         return html`
             <button @click="${backHandler}">👈 BACK</button>
             <h1>${show.title || ''}</h1>
-            <img src="${show.image}">
-            ${seasons}
+            <div>${season}</div>
         `
     }
-}
 
-customElements.define('podcast-view-single', Component)
+ 
+}   
+customElements.define('podcast-view-seasons', Component)

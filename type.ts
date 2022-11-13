@@ -30,12 +30,13 @@ export type show = {
     updated: string
 }
 
-export type phase = 'loading' | 'list' | 'single' | 'error'
+export type phase = 'loading' | 'list' | 'single' | 'error' | 'seasons'
 
 export type state = {
     phase: phase
     previews: preview[]
     single: null | show
+    seasons: season[]
 }
 
 export type subscription = (state: state) => void
