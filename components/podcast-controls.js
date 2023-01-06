@@ -20,6 +20,14 @@ class Component extends LitElement {
 
     disconnectedCallback() { this.disconnectStore() }
 
+    static styles = css`
+        div{
+            display: flex;
+            
+        }
+    
+    `
+
     render() {
         const changeHandler = event => {
             store.changeSorting(event.target.value)
@@ -35,7 +43,6 @@ class Component extends LitElement {
                     <span>Search</span>
                     <input @input="${inputHandler}" value="${this.search}">
                 </label>
-                
                 <label>
                     Sorting
                     <select @change="${changeHandler}">
