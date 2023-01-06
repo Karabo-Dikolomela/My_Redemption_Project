@@ -2,9 +2,11 @@ export type preview = {
     id: string
     title: string
     seasons: number
+    episode: number
     image: string
     genres: string[]
     updated: string
+    episodes: episode[]
 }
 
 export type episode = {
@@ -30,13 +32,13 @@ export type show = {
     updated: string
 }
 
-export type phase = 'loading' | 'list' | 'single' | 'error' | 'seasons'
+export type phase = 'loading' | 'list' | 'single' | 'seasons' |'error'
 
 export type state = {
     phase: phase
     previews: preview[]
-    single: null | show
-    seasons: season[]
+    single: null | show & episode
+    seasons: null | season[] & show & episode
 }
 
 export type subscription = (state: state) => void
