@@ -34,6 +34,12 @@ class Component extends LitElement {
     * {
       box-sizing: border-box;
     }
+
+    .body-bg {
+      background-color: #FF6EC7;
+      border-radius: 30px;
+    }
+
     div {
       display: flex;
       justify-content: space-between;
@@ -63,14 +69,14 @@ class Component extends LitElement {
         <div>
           <label>
             <span><p>Search</p></span>
-                <input @input="${inputHandler}" value="${this.search}" />
+                <input class= "body-bg" @input="${inputHandler}" value="${this.search}" />
             </i>
           </label>
         </div>
         <div>
           <label>
             <p>Sorting</p>
-            <select @change="${changeHandler}">
+            <select class= "body-bg" @change="${changeHandler}">
               <option value="a-z" .selected="${this.sorting === "a-z"}">
                 A - Z
               </option>
