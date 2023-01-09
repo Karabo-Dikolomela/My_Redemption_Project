@@ -37,7 +37,7 @@ class Component extends LitElement {
 
     .body-bg {
       background-color: #FF6EC7;
-      border-radius: 30px;
+      border-radius: 20px;
     }
 
     div {
