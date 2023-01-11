@@ -109,13 +109,7 @@ class Component extends LitElement {
                         <button>
                             <h3 @click="${clickHandler}"> Seasons: ${seasons} </h3>
                         </button>
-                        ${episodes.map(({ id, episode, file, title: innerTitle }) => {
-                            return html`
-                                <div>
-                                    <h3> Episodes: ${episode} </h3>
-                                </div>
-                            `
-                        })}
+                        <h3> Episodes: ${episode} </h3>
                         <img src="${image}" width="300" height="300" @click="${clickHandler1}">
                         <div>Updated: ${day} ${month} ${year}</div>
                         <p class="genre" >Genres: ${genres}</p>
